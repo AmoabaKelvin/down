@@ -148,7 +148,7 @@ export function Welcome({ recent, home, creating: startCreating, error, onOpen, 
   )
 }
 
-/** Down's mark: a copperplate D on handwriting paper. The same picture as the app icon. */
+/** Down's mark: a pen signing on a line. The same picture as the app icon. */
 export function Logo({ size = 76 }: { size?: number }) {
   return <img src="/logo.png" width={size} height={size} alt="" draggable={false} />
 }

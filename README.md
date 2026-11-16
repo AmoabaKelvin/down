@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/icon.png" width="128" alt="Down's icon, a copperplate D on handwriting paper">
+  <img src="docs/icon.png" width="128" alt="Down's icon, a fountain pen signing a name on a line">
 </p>
 
 <h1 align="center">Down</h1>

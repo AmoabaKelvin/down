@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs>
+<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f2ee"/></linearGradient>
+<linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="800" y2="0"><stop offset="0" stop-color="#1b2550"/><stop offset="1" stop-color="#2f46a8"/></linearGradient>
+<linearGradient id="barrel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4157"/><stop offset=".45" stop-color="#171a24"/><stop offset="1" stop-color="#0b0d13"/></linearGradient>
+<linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6fa"/><stop offset=".5" stop-color="#c3c9d4"/><stop offset="1" stop-color="#8e96a5"/></linearGradient>
+<clipPath id="sq"><rect x="100" y="100" width="824" height="824" rx="186"/></clipPath>
+<filter id="pen" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="-10" dy="22" stdDeviation="16" flood-color="#0b0d13" flood-opacity=".28"/></filter>
+</defs>
+<rect x="100" y="100" width="824" height="824" rx="186" fill="url(#paper)"/>
+<rect x="101.5" y="101.5" width="821" height="821" rx="184.5" fill="none" stroke="#000" stroke-opacity=".09" stroke-width="3"/>
+<g clip-path="url(#sq)">
+<path d="M220 742H804" stroke="#c9ccd4" stroke-width="5" stroke-linecap="round"/>
+<path d="M226 690l30 30M256 690l-30 30" stroke="#b6bac4" stroke-width="7" stroke-linecap="round"/>
+<g fill="none" stroke="url(#ink)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(-6.0 6.0)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(-4.5 4.5)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(-3.0 3.0)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(-1.5 1.5)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(0.0 0.0)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(1.5 -1.5)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(3.0 -3.0)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(4.5 -4.5)"/><path d="M236 640C230 540 292 330 368 344C424 354 372 528 330 630C312 676 354 648 378 606C400 566 424 528 446 546C464 562 434 620 468 616C500 612 512 546 536 552C558 558 530 620 564 616C596 612 616 552 650 528" transform="translate(6.0 -6.0)"/></g><path d="M300 690C392 664 500 652 584 656C620 658 646 664 668 676C642 670 616 666 584 666C500 664 394 676 304 698C294 700 292 692 300 690Z" fill="url(#ink)"/>
+<g transform="translate(650 528) rotate(-48) scale(1.2)" filter="url(#pen)">
+  <rect x="190" y="-36" width="640" height="72" rx="32" fill="url(#barrel)"/>
+  <rect x="210" y="-24" width="600" height="7" rx="3.5" fill="#fff" opacity=".18"/>
+  <rect x="186" y="-37" width="16" height="74" rx="3" fill="url(#steel)"/>
+  <rect x="112" y="-28" width="80" height="56" rx="12" fill="#14161d"/>
+  <path d="M0 0L72 -21Q108 -26 116 -24V24Q108 26 72 21Z" fill="url(#steel)"/>
+  <path d="M10 0H74" stroke="#5d6473" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="78" cy="0" r="5.5" fill="#5d6473"/>
+</g>
+</g>
+</svg>
