@@ -25,8 +25,9 @@ export function Toast({ toast, onDone }: { toast: ToastMessage | null; onDone: (
     return () => window.clearTimeout(timer.current)
   }, [toast, arm])
 
+  // ⌘Z does an Undo; other actions, like Open, are clicked.
   useEffect(() => {
-    if (!action) return
+    if (!action || action.label !== 'Undo') return
     function onKey(event: KeyboardEvent) {
       if (!(event.metaKey || event.ctrlKey) || event.shiftKey || event.altKey || event.key.toLowerCase() !== 'z') return
       if ((event.target as HTMLElement).closest?.('input, textarea, [contenteditable="true"]')) return
@@ -63,7 +64,7 @@ export function Toast({ toast, onDone }: { toast: ToastMessage | null; onDone: (
                 }}
               >
                 {action.label}
-                <kbd>⌘Z</kbd>
+                {action.label === 'Undo' && <kbd>⌘Z</kbd>}
               </button>
             )}
           </motion.div>

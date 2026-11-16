@@ -22,9 +22,11 @@ type Props = {
   onLink: (href: string, kind: 'wiki' | 'href') => void
   onOpen: (path: string) => void
   onError: (message: string) => void
+  onExtract: (name: string, markdown: string) => Promise<string | null>
+  onSearch: (text: string) => void
 }
 
-export function NoteView({ path, body, rev, source, fresh, meta, words, backlinks, onChange, onReady, onRename, onLink, onOpen, onError }: Props) {
+export function NoteView({ path, body, rev, source, fresh, meta, words, backlinks, onChange, onReady, onRename, onLink, onOpen, onError, onExtract, onSearch }: Props) {
   const editor = useRef<TiptapEditor | null>(null)
   const sourceBox = useRef<HTMLTextAreaElement>(null)
   const ready = (instance: TiptapEditor | null) => {
@@ -69,7 +71,18 @@ export function NoteView({ path, body, rev, source, fresh, meta, words, backlink
           placeholder="Plain markdown…"
         />
       ) : (
-        <Editor key={`${path}:${rev}`} path={path} initial={body} onChange={onChange} onReady={ready} onLink={onLink} onError={onError} autofocus={!fresh} />
+        <Editor
+          key={`${path}:${rev}`}
+          path={path}
+          initial={body}
+          onChange={onChange}
+          onReady={ready}
+          onLink={onLink}
+          onError={onError}
+          onExtract={onExtract}
+          onSearch={onSearch}
+          autofocus={!fresh}
+        />
       )}
 
       <AnimatePresence initial={false}>

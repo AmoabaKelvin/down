@@ -166,6 +166,7 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
   const [sidebarWidth, setSidebarWidth] = useState(() => stored('down.sidebarWidth', 264))
   const [resizing, setResizing] = useState(false)
   const [palette, setPalette] = useState(false)
+  const [paletteQuery, setPaletteQuery] = useState('')
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [look, setLook] = useState<Look>(() => stored<Look>(LOOK_KEY, { font: 'sans', width: 'narrow' }))
   const [renaming, setRenaming] = useState<string | null>(null)
@@ -406,6 +407,24 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
     }
   }
 
+  /** A note made from text selected in the open one, next to it. Resolves to its title for the link. */
+  async function extractNote(name: string, markdown: string) {
+    try {
+      const path = await createNote(current ? folderOf(current) : '', name, markdown)
+      await refresh()
+      notify({ text: `Moved to “${title(path)}”`, action: { label: 'Open', run: () => go(path) } })
+      return title(path)
+    } catch (e) {
+      notify(String(e))
+      return null
+    }
+  }
+
+  function search(text = '') {
+    setPaletteQuery(text)
+    setPalette(true)
+  }
+
   async function newFolder(parent = current ? folderOf(current) : '') {
     try {
       const path = await createFolder(parent, 'New folder')
@@ -590,7 +609,10 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
     }
     if (key === 'n' && event.shiftKey) run(() => newFolder())
     else if (key === 'n') run(() => newNote())
-    else if (key === 'k' || key === 'o' || key === 'p' || (key === 'f' && event.shiftKey)) run(() => setPalette((p) => !p))
+    else if (key === 'k' || key === 'o' || key === 'p' || (key === 'f' && event.shiftKey)) run(() => {
+      setPaletteQuery('')
+      setPalette((p) => !p)
+    })
     else if (key === '\\') run(() => setSidebar((s) => !s))
     else if (key === '/') run(toggleSource)
     else if (key === ',') run(() => setSettingsOpen((s) => !s))
@@ -682,7 +704,7 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
                 onTrash={trash}
                 onTogglePin={togglePin}
                 onReveal={(path) => reveal(path)}
-                onSearch={() => setPalette(true)}
+                onSearch={() => search()}
                 onSettings={() => setSettingsOpen(true)}
                 onSwitchVault={onSwitchVault}
                 onOpenFolder={onOpenFolder}
@@ -761,6 +783,8 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
                   onLink={followLink}
                   onOpen={go}
                   onError={notify}
+                  onExtract={extractNote}
+                  onSearch={search}
                 />
               </motion.article>
             ) : (
@@ -777,7 +801,7 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
                       <kbd>⌘N</kbd>
                     </button>
                     {index.notes.length > 0 && (
-                      <button className="empty-action" onClick={() => setPalette(true)}>
+                      <button className="empty-action" onClick={() => search()}>
                         <Icon name="search" size={15} />
                         Find
                         <kbd>⌘K</kbd>
@@ -795,6 +819,7 @@ function Workspace({ info, onSwitchVault, onOpenFolder, onNewVault, onVaults }: 
         open={palette}
         index={index}
         recent={recent}
+        query={paletteQuery}
         onOpen={go}
         onCreate={(name) => newNote(current ? folderOf(current) : '', name)}
         onClose={() => setPalette(false)}

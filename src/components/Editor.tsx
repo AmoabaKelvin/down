@@ -15,6 +15,7 @@ import { VaultImage } from '../editor/image'
 import { SlashMenu } from '../editor/slash'
 import { WikiLink, WikiLinkSuggest } from '../editor/wikilink'
 import { saveAttachment } from '../lib/api'
+import { SelectionMenu } from './SelectionMenu'
 import { tidyMarkdown } from '../lib/markdown'
 import { folderOf, relativePath } from '../lib/vault'
 
@@ -27,6 +28,9 @@ type Props = {
   /** A link was clicked: a [[target]], a path to a note, or a web address. */
   onLink: (href: string, kind: 'wiki' | 'href') => void
   onError: (message: string) => void
+  /** Makes a note from selected text; resolves to its title, or null. */
+  onExtract: (name: string, markdown: string) => Promise<string | null>
+  onSearch: (text: string) => void
   autofocus: boolean
 }
 
@@ -66,7 +70,7 @@ function toBase64(file: File) {
   })
 }
 
-export const Editor = memo(function Editor({ path, initial, onChange, onReady, onLink, onError, autofocus }: Props) {
+export const Editor = memo(function Editor({ path, initial, onChange, onReady, onLink, onError, onExtract, onSearch, autofocus }: Props) {
   // StrictMode can build a spare editor that is never shown; only the live one may save.
   const live = useRef<TiptapEditor | null>(null)
   const handlers = useRef({ onLink, onError, path })
@@ -170,5 +174,10 @@ export const Editor = memo(function Editor({ path, initial, onChange, onReady, o
     return () => cancelAnimationFrame(frame)
   }, [editor, autofocus])
 
-  return <EditorContent editor={editor} />
+  return (
+    <>
+      <EditorContent editor={editor} />
+      {editor && <SelectionMenu editor={editor} onExtract={onExtract} onSearch={onSearch} />}
+    </>
+  )
 })

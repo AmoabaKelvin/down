@@ -34,6 +34,18 @@ Point Down at a folder, or at an Obsidian vault, and write. Every note is a `.md
 - Plain text stays plain: `snake_case`, `5 * 3` and `C:\paths` are saved as typed, without extra backslashes
 - An Untitled note you leave empty is cleared away when you move on
 
+## Selecting text
+
+![Selecting a line shows a small toolbar above it](docs/screenshots/selection.png)
+
+Select some text and a small toolbar appears above it:
+
+- **Turn into** shows what the text is now, and turns it into a heading, a to-do list, a bulleted or numbered list, a quote or code
+- Bold, italic, strikethrough and code, and a link to a web page
+- **Link note** makes the words a `[[link]]` to a note of that name, so a phrase becomes a page you can fill in later
+- **New note** moves the selection into a new note, next to this one, and leaves a link in its place. You name the note as you go
+- The search button finds the words across the vault
+
 ## Finding things
 
 ![Searching for "sour" finds the Sourdough note](docs/screenshots/search.png)

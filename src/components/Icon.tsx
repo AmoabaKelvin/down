@@ -111,6 +111,17 @@ const PATHS: Record<string, React.ReactNode> = {
   backlink: <path d="M6 3.5 2.5 7 6 10.5M2.5 7h7a4 4 0 0 1 4 4v1.5" />,
   sparkle: <path d="M8 1.5c.4 3.3 1.9 5.1 5.5 6.5-3.6 1.4-5.1 3.2-5.5 6.5-.4-3.3-1.9-5.1-5.5-6.5 3.6-1.4 5.1-3.2 5.5-6.5Z" />,
   enter: <path d="M13 3v4.5a2 2 0 0 1-2 2H3M6 6.5l-3 3 3 3" />,
+  bold: <path d="M4.75 2.75h4a2.6 2.6 0 0 1 0 5.2h-4ZM4.75 7.95h4.75a2.65 2.65 0 0 1 0 5.3H4.75Z" />,
+  italic: <path d="M10.5 2.75H6.75M9.25 13.25H5.5M8.6 2.75 7.4 13.25" />,
+  strike: <path d="M2.75 8h10.5M10.6 4.6c-.35-1.1-1.4-1.85-2.65-1.85-1.6 0-2.75.9-2.75 2.15 0 .65.3 1.15.85 1.55M5.2 11c.35 1.35 1.5 2.25 3 2.25 1.7 0 2.9-.95 2.9-2.3 0-.5-.15-.9-.45-1.25" />,
+  brackets: <path d="M4.75 3.25h-1.5v9.5h1.5M7.25 3.25h-1v9.5h1M8.75 3.25h1v9.5h-1M11.25 3.25h1.5v9.5h-1.5" />,
+  extract: (
+    <>
+      <path d="M8 2.25H4.25a1.5 1.5 0 0 0-1.5 1.5v8.5a1.5 1.5 0 0 0 1.5 1.5h7.5a1.5 1.5 0 0 0 1.5-1.5V8.5" />
+      <path d="M10 2.25h3.25V5.5M13.25 2.25 8 7.5" />
+    </>
+  ),
+  down: <path d="M4.5 6.25 8 9.75l3.5-3.5" />,
 }
 
 export function Icon({ name, size = 16, className, strokeWidth = 1.4 }: { name: string; size?: number; className?: string; strokeWidth?: number }) {

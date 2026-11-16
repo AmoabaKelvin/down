@@ -8,6 +8,8 @@ type Props = {
   open: boolean
   index: Index | null
   recent: string[]
+  /** What's already typed when it opens, e.g. text selected in a note. */
+  query?: string
   onOpen: (path: string) => void
   onCreate: (title: string) => void
   onClose: () => void
@@ -30,8 +32,8 @@ type Row =
   | { kind: 'text'; path: string; snippet: string; count: number }
   | { kind: 'create'; title: string }
 
-function PaletteCard({ index, recent, onOpen, onCreate, onClose }: Omit<Props, 'open'>) {
-  const [query, setQuery] = useState('')
+function PaletteCard({ index, recent, query: initial, onOpen, onCreate, onClose }: Omit<Props, 'open'>) {
+  const [query, setQuery] = useState(initial ?? '')
   const [active, setActive] = useState(0)
   const [hits, setHits] = useState<{ query: string; hits: Hit[] }>({ query: '', hits: [] })
   const list = useRef<HTMLDivElement>(null)
@@ -205,7 +207,9 @@ function Highlighted({ text, indices }: { text: string; indices: number[] }) {
   )
 }
 
-function Snippet({ text, query }: { text: string; query: string }) {
+function Snippet({ text: raw, query }: { text: string; query: string }) {
+  // Snippets are raw lines; emphasis and link brackets would read as noise.
+  const text = raw.replace(/\*\*|__|`|\[\[|\]\]/g, '')
   const at = text.toLowerCase().indexOf(query.toLowerCase())
   if (at < 0) return <>{text}</>
   return (
